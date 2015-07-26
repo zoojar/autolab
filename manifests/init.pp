@@ -24,10 +24,12 @@ class autolab (
   $vagrant_lab_dir            = $autolab::params::vagrant_lab_dir,
   $vagrant_boxes              = $autolab::params::vagrant_boxes,
   $vagrant_bin_dir            = $autolab::params::vagrant_bin_dir,
+  $vagrant_version            = $autolab::params::vagrant_version,
   $chocolatey_install_ps1_url = $autolab::params::chocolatey_install_ps1_url,
   $chocolatey_path            = $autolab::params::chocolatey_path,
   $temp_dir                   = $autolab::params::temp_dir,
   $powershell_exe_path        = $autolab::params::powershell_exe_path,
+
 ) inherits autolab::params {
   
   windows_env { "PATH=$chocolatey_path": }
@@ -40,7 +42,7 @@ class autolab (
   }
 
   package { 'vagrant':
-    ensure    => '1.7.4',
+    ensure    => $vagrant_version,
     provider  => 'chocolatey',
   }
 

@@ -15,65 +15,59 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This module configures and installs all the things required for a local test environment running on a Windows OS.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+Begining with an install of Chocolatey, then Vagrant with any Vagrant Boxes specified, VirtualBox (VMware Workstation to be added soon) & Git. This module has been tested on Windows 8.1 with PE 3.8.1).
 
 ## Setup
 
 ### What autolab affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+Installation of the following components: 
+- Chocolatey
+- Vagrant
+- VirtualBox
+- Git
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+Assuming this is a standalone developer workstation and not managed by puppet, a masterless puppet setup is used (Puppet PE 3.8.1) - however the module will work using a puppet master.
+
+Ensure that the following modules are installed:
+- puppetlabs-stdlib >= 1.0.0
+- puppetlabs-powershell >= 1.0.4
+- chocolatey-chocolatey >= 1.0.2
+- badgerious-windows_env >= 2.2.1
+
 
 ### Beginning with autolab
 
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+#### Testing:
+An example init.pp can be found in the examples folder. 
+Run puppet apply to test:
+puppet apply "autolab/examples/init.pp" -v
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+class { 'autolab':
+}
 
-## Reference
+#### To add more vagrant boxes:
+class { 'autolab':
+  vagrant_boxes => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
+}
+#####(NOTE: Consider the amount of time it takes for each vagrant box download, this will affect the puppet run [exec timeout is disabled to permit large downloads - puppet will appear hung!])
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+#### To specify a vagrant version & lab dir:
+class { 'autolab':
+  vagrant_boxes   => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
+  vagrant_version => '1.7.4',
+  vagrant_lab_dir => "c:\\vagrantlab"
+}
+
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
-
-## Development
-
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+- Tested on Windows 8.1

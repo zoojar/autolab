@@ -1,5 +1,6 @@
-# Autolab puppet strap
-# Downloads and installs dependencies for autolab (vagrant, virtualbox & git); 
+# Autolab puppetstrap.ps1
+#
+# Downloads and installs: 
 # - Puppet 3.8.1 
 # - Puppet modules
 # 
