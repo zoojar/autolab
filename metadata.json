@@ -1,6 +1,6 @@
 {
   "name": "zoojar/autolab",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "zoojar",
   "summary": "Installs puppet, vagrant, virtualbox & git for a virtual lab environments (Windows 7/8 only)",
   "license": "Apache 2.0",
