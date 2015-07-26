@@ -48,30 +48,31 @@ Ensure that the following modules are installed:
 #### Testing:
 An example init.pp can be found in the examples folder. 
 Run puppet apply to test:
---
+```
 puppet apply "autolab/examples/init.pp" -v
+```
 
 ## Usage
-
-class { 'autolab':
-}
+```
+class { 'autolab': }
+```
 
 #### To add more vagrant boxes:
-
+```
 class { 'autolab':
   vagrant_boxes => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
 }
---
+```
 #####(NOTE: Consider the amount of time it takes for each vagrant box download, this will affect the puppet run [exec timeout is disabled to permit large downloads - puppet will appear hung!])
---
+
 #### To specify a vagrant version & lab dir:
---
+```
 class { 'autolab':
   vagrant_boxes   => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
   vagrant_version => '1.7.4',
   vagrant_lab_dir => "c:\\vagrantlab"
 }
-
+```
 
 ## Limitations
 
