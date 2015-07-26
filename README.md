@@ -93,3 +93,6 @@ Updated docs
 
 ## 0.2.0
 Added Oracle Virtualbox
+
+## 0.2.1
+Added version
