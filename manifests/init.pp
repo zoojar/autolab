@@ -74,10 +74,5 @@ class autolab (
   }
 
   vagrant_box_add { $vagrant_boxes: }
-  
-  
-  # install git
-  # setup ssh to clone puppet repos
-  # install virtualbox
-  # vagrant up boxes
+
 }
