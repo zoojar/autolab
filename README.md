@@ -9,7 +9,6 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with autolab](#beginning-with-autolab)
 4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
@@ -74,16 +73,13 @@ class { 'autolab':
 }
 ```
 
-
 ## Limitations
-
 - Tested on Windows 8.1
-- 
-## Development
 
+## Development
 Contributions welcome
 
-## Release Notes/Contributors/Etc **Optional**
+## Release Notes/Contributors/Etc
 
 ## 0.1.0
 Initial commit
@@ -96,3 +92,6 @@ Added Oracle Virtualbox
 
 ## 0.2.1
 Added version
+
+## 0.2.2
+Updated documentation
