@@ -78,3 +78,18 @@ class { 'autolab':
 ## Limitations
 
 - Tested on Windows 8.1
+- 
+## Development
+
+Contributions welcome
+
+## Release Notes/Contributors/Etc **Optional**
+
+## 0.1.0
+Initial commit
+
+## 0.1.2
+Updated docs
+
+## 0.2.0
+Added Oracle Virtualbox
