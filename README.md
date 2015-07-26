@@ -19,7 +19,8 @@ This module configures and installs all the things required for a local test env
 
 ## Module Description
 
-Begining with an install of Chocolatey, then Vagrant with any Vagrant Boxes specified, VirtualBox (VMware Workstation to be added soon) & Git. This module has been tested on Windows 8.1 with PE 3.8.1).
+Begining with an install of Chocolatey, then Vagrant with any Vagrant Boxes specified, VirtualBox (VMware Workstation to be added soon) & Git. 
+This module has been tested on Windows 8.1 with PE 3.8.1).
 
 ## Setup
 
@@ -47,6 +48,7 @@ Ensure that the following modules are installed:
 #### Testing:
 An example init.pp can be found in the examples folder. 
 Run puppet apply to test:
+--
 puppet apply "autolab/examples/init.pp" -v
 
 ## Usage
@@ -55,12 +57,15 @@ class { 'autolab':
 }
 
 #### To add more vagrant boxes:
+--
 class { 'autolab':
   vagrant_boxes => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
 }
+--
 #####(NOTE: Consider the amount of time it takes for each vagrant box download, this will affect the puppet run [exec timeout is disabled to permit large downloads - puppet will appear hung!])
 
 #### To specify a vagrant version & lab dir:
+--
 class { 'autolab':
   vagrant_boxes   => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
   vagrant_version => '1.7.4',
