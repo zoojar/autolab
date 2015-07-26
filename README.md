@@ -63,16 +63,18 @@ class { 'autolab':
   vagrant_boxes => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
 }
 ```
-#####(NOTE: Consider the amount of time it takes for each vagrant box download, this will affect the puppet run [exec timeout is disabled to permit large downloads - puppet will appear hung!])
+(NOTE: Consider the amount of time it takes for each vagrant box download, this will affect the puppet run [exec timeout is disabled to permit large downloads])
+
 
 #### To specify a vagrant version & lab dir:
 ```
 class { 'autolab':
   vagrant_boxes   => [ 'ubuntu/trusty64', 'puppetlabs/centos-6.6-64-puppet' ],
   vagrant_version => '1.7.4',
-  vagrant_lab_dir => "c:\\vagrantlab"
+  vagrant_lab_dir => "c:\\vagrantlab",
 }
 ```
+
 
 ## Limitations
 
