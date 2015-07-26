@@ -51,7 +51,7 @@ If your most recent release breaks compatibility or requires particular steps
 for upgrading, you may wish to include an additional section here: Upgrading
 (For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
 
-#### Usage
+## Usage
 
 Put the classes, types, and resources for customizing, configuring, and doing
 the fancy stuff with your module here.
