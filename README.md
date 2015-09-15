@@ -75,6 +75,7 @@ class { 'autolab':
 
 ## Limitations
 - Tested on Windows 8.1
+- PE 3.8.1 & 4.2.1 (2015.2)
 
 ## Development
 Contributions welcome
@@ -95,3 +96,6 @@ Added version
 
 ## 0.2.2
 Updated documentation
+
+## 0.2.3
+Included vagrant-reload plugin install, and fixes for defined resources in 4.2.1.
