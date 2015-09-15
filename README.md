@@ -19,7 +19,7 @@ This module configures and installs all the things required for a local test env
 ## Module Description
 
 Beginning with an install of Chocolatey, then Vagrant with any Vagrant Boxes specified & Oracle VirtualBox (VMware Workstation to be added soon). 
-This module has been tested on Windows 8.1 with PE 3.8.1).
+This module has been tested on Windows 8.1 with PE 3.8.1 & 4.2.1).
 
 ## Setup
 
