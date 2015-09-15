@@ -21,12 +21,13 @@
 # Copyright 2015 David Newton.
 #
 class autolab (
+  $chocolatey_install_ps1_url = $autolab::params::chocolatey_install_ps1_url,
+  $chocolatey_path            = $autolab::params::chocolatey_path,
+  $virtualbox_version         = $autolab::params::virtualbox_version,
   $vagrant_lab_dir            = $autolab::params::vagrant_lab_dir,
   $vagrant_boxes              = $autolab::params::vagrant_boxes,
   $vagrant_bin_dir            = $autolab::params::vagrant_bin_dir,
   $vagrant_version            = $autolab::params::vagrant_version,
-  $chocolatey_install_ps1_url = $autolab::params::chocolatey_install_ps1_url,
-  $chocolatey_path            = $autolab::params::chocolatey_path,
   $temp_dir                   = $autolab::params::temp_dir,
   $powershell_exe_path        = $autolab::params::powershell_exe_path,
 
@@ -39,6 +40,11 @@ class autolab (
     creates  => "C:\\ProgramData\\Chocolatey",
     provider => 'powershell',
     command  => 'iex ((new-object net.webclient).DownloadString(\'https://chocolatey.org/install.ps1\'))',                                                    
+  }
+
+  package { 'virtualbox':
+    ensure   => $virtualbox_version,
+    provider => 'chocolatey',
   }
 
   package { 'vagrant':
@@ -54,25 +60,24 @@ class autolab (
     provider => powershell,
     path     => $vagrant_bin_dir,
     cwd      => $vagrant_lab_dir,
-    command  => 'vagrant init',
     creates  => "$vagrant_lab_dir\\Vagrantfile",
     require  => [
       Package['vagrant'],
       File[$vagrant_lab_dir],
     ],
   }
-
-  define vagrant_box_add {
-    exec { "vagrant box add $name":
-      provider => powershell,
-      timeout  => 0,
-      path     => $autolab::vagrant_bin_dir,
-      cwd      => $autolab::vagrant_lab_dir,
-      require  => [ Package['vagrant'], File[$autolab::vagrant_lab_dir] ],
-      unless   => "if ($(vagrant box list) -like \"*$name*\") {exit 0} else {exit 1}",
-    }
+  exec { 'vagrant plugin install vagrant-reload':
+    provider => powershell,
+    path     => $vagrant_bin_dir,
+    cwd      => $vagrant_lab_dir,
+    unless   => 'if ($(vagrant plugin list) -like "*vagrant-reload*") {exit 0} else {exit 1}',
+    require  => [
+      Package['vagrant'],
+      File[$vagrant_lab_dir],
+    ],
   }
-
-  vagrant_box_add { $vagrant_boxes: }
+  
+  
+  autolab::vagrant_box_add { $vagrant_boxes: }
 
 }
